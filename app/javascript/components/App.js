@@ -14,7 +14,7 @@ class App extends React.Component {
     } = this.props
     return (
       <React.Fragment>
-        <TopBar sign_in_route={ sign_in_route } logged_in={ logged_in } sign_out_route={ sign_out_route } edit_account={ edit_account_route } />
+        <TopBar sign_in_route={ sign_in_route } sign_up_route={ sign_up_route } logged_in={ logged_in } sign_out_route={ sign_out_route } edit_account={ edit_account_route } />
       </React.Fragment>
     );
   }

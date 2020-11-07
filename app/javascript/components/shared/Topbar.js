@@ -8,11 +8,10 @@ const TopBar = (props) => {
   const {
     sign_in_route,
     sign_out_route,
+    sign_up_route,
     logged_in,
     edit_account
   } = props
-
-  console.log(logged_in)
 
   return ( 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -34,11 +33,9 @@ const TopBar = (props) => {
             <Nav.Link href={ sign_out_route } >Sign Out</Nav.Link>
           }
           { !logged_in && 
-            <Nav.Link href={ sign_in_route } >Sign In</Nav.Link>
+            <Nav.Link href={ sign_in_route } >Log In</Nav.Link>
           }
-          <Nav.Link href={ edit_account } >
-            My Account
-          </Nav.Link>
+          <Nav.Link href={ edit_account } >My Account</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
