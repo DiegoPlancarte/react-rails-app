@@ -8,7 +8,9 @@ const TopBar = (props) => {
   const {
     sign_in_route,
     sign_out_route,
+    sign_up_route,
     logged_in,
+    edit_account
   } = props
 
   return ( 
@@ -19,12 +21,7 @@ const TopBar = (props) => {
         <Nav className="mr-auto">
           <Nav.Link href="/">Features</Nav.Link>
           <Nav.Link href="/">Pricing</Nav.Link>
-          { logged_in && 
-            <Nav.Link href={ sign_out_route } >Sign Out</Nav.Link>
-          }
-          { !logged_in && 
-            <Nav.Link href={ sign_in_route } >Sign In</Nav.Link>
-          }
+          
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/">Something</NavDropdown.Item>
             <NavDropdown.Divider />
@@ -32,10 +29,13 @@ const TopBar = (props) => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="/">
-            Dank memes
-          </Nav.Link>
+          { logged_in && 
+            <Nav.Link href={ sign_out_route } >Sign Out</Nav.Link>
+          }
+          { !logged_in && 
+            <Nav.Link href={ sign_in_route } >Log In</Nav.Link>
+          }
+          <Nav.Link href={ edit_account } >My Account</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
