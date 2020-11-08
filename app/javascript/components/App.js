@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import CreateBlog from "./blogs/CreateBlog";
 import GetBlogs from "./blogs/GetBlogs";
 import TopBar from "./shared/Topbar"
 
@@ -22,6 +23,7 @@ class App extends React.Component {
         
         <Switch>
           <Route exact path ='/allblogs'> <GetBlogs /> </Route>
+          <Route path="/createblog" render={(props) => <CreateBlog {...props} current_user= { current_user }/> }/>
         </Switch>
       </Router>
       </React.Fragment>
