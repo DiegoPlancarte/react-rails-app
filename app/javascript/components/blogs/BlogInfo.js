@@ -4,8 +4,7 @@ import { Link } from "react-router-dom"
 
 const BlogInfo = (props) => {
 
-  const [state, setState] = useState([]);
-  const [ user, setUser ] = useState({});
+  const [state, setState] = useState({});
 
   useEffect(() => {
     fetch(`/blogs/${props.match.params.id}`)
