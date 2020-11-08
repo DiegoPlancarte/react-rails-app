@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const ReadData = ( url, id ) => {
+const readData = ( url, id ) => {
   
   const [state, setState] = useState([]);
   
@@ -25,4 +25,4 @@ const ReadData = ( url, id ) => {
   ]
 };
 
-export default ReadData;
+export default readData;

@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
-import ReadData from '../utils/ReadData'
+import readData from '../utils/readData'
+import destroyData from '../utils/destroyData'
 
 const BlogInfo = (props) => {
 
-  const [ state ] = ReadData("blogs", `${props.match.params.id}`)
-
-  const deleteBlog = ()=> {
-		return fetch(`/blogs/${props.match.params.id}` ,{
-			headers: {
-        'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
-      },
-      method: 'DELETE'
-		})
-		.then((response)=> {
-			if(response.ok){
-        props.history.push('/allblogs')
-			}
-		})
-  }
+  const [ state ] = readData("blogs", `${props.match.params.id}`)
+  const [ deleteData ] = destroyData("blogs", `${props.match.params.id}`, props)
 
   const creator = () => {
     return props.current_user.id === state.user_id
@@ -34,7 +22,7 @@ const BlogInfo = (props) => {
       <Link to={`/editblog/${state.id}`}><Button>Edit Blog</Button></Link>
       }
       { creator() &&
-      <Button onClick={ deleteBlog } className="btn btn-danger" >Delete Blog</Button>
+      <Button onClick={ deleteData } className="btn btn-danger" >Delete Blog</Button>
       }
     </React.Fragment>
   );

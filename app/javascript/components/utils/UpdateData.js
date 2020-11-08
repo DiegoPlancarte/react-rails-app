@@ -1,6 +1,4 @@
-import { Redirect } from "react-router-dom";
-
-const UpdateData = ( url, id, props ) => {
+const updateData = ( url, id, props ) => {
   
   const editData = (data)=> {
     return fetch (`/${url}/${id}`, {
@@ -23,4 +21,4 @@ const UpdateData = ( url, id, props ) => {
   ]
 };
 
-export default UpdateData;
+export default updateData;

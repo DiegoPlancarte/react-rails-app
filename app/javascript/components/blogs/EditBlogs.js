@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import ReadData from '../utils/ReadData'
-import UpdateData from '../utils/UpdateData'
+import readData from '../utils/readData'
+import updateData from '../utils/updateData'
 
 const EditBlog = (props) => {
   
-  const [ state, setState ] = ReadData("blogs", `${props.match.params.id}`)
-  const [ editData ] = UpdateData("blogs", `${props.match.params.id}`, props)
+  const [ state, setState ] = readData("blogs", `${props.match.params.id}`)
+  const [ editData ] = updateData("blogs", `${props.match.params.id}`, props)
 
   const handleSubmit = (event) => {
     if(event) {
