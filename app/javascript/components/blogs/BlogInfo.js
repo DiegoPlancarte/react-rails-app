@@ -18,11 +18,26 @@ const BlogInfo = (props) => {
       })
   }, []);
 
+  const deleteBlog = ()=> {
+		return fetch(`/blogs/${props.match.params.id}` ,{
+			headers: {
+        'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
+      },
+      method: 'DELETE'
+		})
+		.then((response)=> {
+			if(response.ok){
+        props.history.push('/allblogs')
+			}
+		})
+	}
+
   return (
     <React.Fragment>
       <h1>{state.title}</h1>
       <p>{state.body}</p>
       <Link to={`/editblog/${state.id}`}><Button>Edit Blog</Button></Link>
+      <Button onClick={ deleteBlog } className="btn btn-danger" >Delete Blog</Button>
     </React.Fragment>
   );
 };
