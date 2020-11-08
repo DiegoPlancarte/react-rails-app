@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import ReadData from '../utils/ReadData'
-import UpdateData from '../utils/UpdateData'
 
 const EditBlog = (props) => {
   
-  const [ state, setState ] = ReadData("blogs", `${props.match.params.id}`)
-  const [ editData ] = UpdateData("blogs", `${props.match.params.id}`, props)
+  const [ state, setState ] = useState({})
+
+  useEffect(() => {
+    fetch(`/blogs/${props.match.params.id}`)
+    .then((response)=>{
+      if(response.status === 200){
+          return(response.json())
+        }
+      })
+      .then((state) => {
+        setState(state);
+      })
+  }, []);
 
   const handleSubmit = (event) => {
     if(event) {
       event.preventDefault();
     }
-    editData(state)
+    editBlog(state)
   }
   
   const handleInputChange = (event) => {
     event.persist();
     setState(state => ({...state, [event.target.name]: event.target.value}));
+  }
+
+  const editBlog = (blog)=> {
+    return fetch (`/blogs/${props.match.params.id}`, {
+      body: JSON.stringify(blog),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
+      },
+      method: 'PUT'
+    })
+    .then ((response)=> {
+      if (response.ok){
+        alert('Your blog has been updated!')
+        props.history.push(`/bloginfo/${props.match.params.id}`)
+      }
+    })
   }
 
   return (

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
-import ReadDate from '../utils/ReadData'
+import ReadData from '../utils/ReadData'
 
 const BlogInfo = (props) => {
 
-  const [ state ] = ReadDate("blogs", `${props.match.params.id}`)
+  const [ state ] = ReadData("blogs", `${props.match.params.id}`)
 
   const deleteBlog = ()=> {
 		return fetch(`/blogs/${props.match.params.id}` ,{

@@ -20,7 +20,8 @@ const ReadData = ( url, id ) => {
   }, []);
 
   return [
-    state
+    state,
+    setState
   ]
 };
 

@@ -13,7 +13,7 @@ const GetBlogs = () => {
       { state.map((v,i) => {
         return(
           <div key={i}>
-            <Link to={`/bloginfo/${v.id}`}>{v.title}</Link>
+            <Link to={`/blogsinfo/${v.id}`}>{v.title}</Link>
             <p>{v.body}</p>
           </div>
         )
