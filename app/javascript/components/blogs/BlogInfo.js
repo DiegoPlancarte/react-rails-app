@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
-const GetBlogs = () => {
+const BlogInfo = (props) => {
 
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    fetch('/blogs')
+    fetch(`/blogs/${props.match.params.id}`)
     .then((response)=>{
       if(response.status === 200){
           return(response.json())
@@ -19,16 +20,11 @@ const GetBlogs = () => {
 
   return (
     <React.Fragment>
-      { state.map((v,i) => {
-        return(
-          <div key={i}>
-            <Link to={`/bloginfo/${v.id}`}>{v.title}</Link>
-            <p>{v.body}</p>
-          </div>
-        )
-      })}
+      <h1>{state.title}</h1>
+      <p>{state.body}</p>
+      <Link to={`/editblog/${state.id}`}><Button>Edit Blog</Button></Link>
     </React.Fragment>
   );
 };
 
-export default GetBlogs;
+export default BlogInfo;

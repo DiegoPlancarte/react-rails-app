@@ -38,7 +38,7 @@ const CreateBlog = (props) => {
     .then((resp) => {
       if (resp.ok) {
         setState({})
-        alert('Thank you for your Blog. We will be in touch shortly')
+        alert('Your blog has been created!')
       }
     })
     .catch((err) => {
