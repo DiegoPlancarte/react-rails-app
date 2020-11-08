@@ -1,4 +1,7 @@
 import React from "react"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import GetBlogs from "./blogs/GetBlogs";
 import TopBar from "./shared/Topbar"
 
 class App extends React.Component {
@@ -14,7 +17,13 @@ class App extends React.Component {
     } = this.props
     return (
       <React.Fragment>
+        <Router>
         <TopBar sign_in_route={ sign_in_route } sign_up_route={ sign_up_route } logged_in={ logged_in } sign_out_route={ sign_out_route } edit_account={ edit_account_route } />
+        
+        <Switch>
+          <Route exact path ='/allblogs'> <GetBlogs /> </Route>
+        </Switch>
+      </Router>
       </React.Fragment>
     );
   }
