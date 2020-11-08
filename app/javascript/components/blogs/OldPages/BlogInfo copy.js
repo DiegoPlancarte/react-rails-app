@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
-import ReadDate from '../utils/ReadData'
 
 const BlogInfo = (props) => {
 
-  const [ state ] = ReadDate("blogs", `${props.match.params.id}`)
+  const [state, setState] = useState({});
+
+  useEffect(() => {
+    fetch(`/blogs/${props.match.params.id}`)
+    .then((response)=>{
+      if(response.status === 200){
+          return(response.json())
+        }
+      })
+      .then((state) => {
+        setState(state);
+      })
+  }, []);
 
   const deleteBlog = ()=> {
 		return fetch(`/blogs/${props.match.params.id}` ,{

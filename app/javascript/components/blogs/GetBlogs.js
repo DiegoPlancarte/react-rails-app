@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 import ReadDate from '../utils/ReadData'
 
 const GetBlogs = () => {
 
-  const [ state ] = ReadDate("blogs")
+  const [ state ] = ReadDate("blogs", "")
 
   return (
     <React.Fragment>
