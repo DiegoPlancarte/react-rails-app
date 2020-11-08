@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import createData from '../utils/createData';
 
 const CreateBlog = (props) => {
 
-  const [ newData ] = createData('blogs', props)
   const [ state, setState ] = useState({})
 
   const handleSubmit = (event) => {
     if(event) {
       event.preventDefault();
     }
-    newData(state)
+    createBlog(state)
   }
-
+  
   const handleInputChange = (event) => {
     event.persist();
     setState(state=>({...state, user_id: userId() }))
@@ -26,6 +24,29 @@ const CreateBlog = (props) => {
     } else {
       return null
     }
+  }
+
+  const createBlog = (data) => {
+    fetch(`/blogs`, {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
+      },
+      method: 'POST'
+    })
+    .then((resp) => {
+      if (resp.ok) {
+        setState({})
+        alert('Your blog has been created!')
+        props.history.push(`/allblogs`)
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
   }
 
   return (
