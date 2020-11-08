@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
-import readDate from '../utils/readData'
 
 const GetBlogs = () => {
 
-  const [ state ] = readDate("blogs", "")
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    fetch('/blogs')
+    .then((response)=>{
+      if(response.status === 200){
+          return(response.json())
+        }
+      })
+      .then((state) => {
+        setState(state);
+      })
+  }, []);
 
   return (
     <React.Fragment>
@@ -13,7 +24,7 @@ const GetBlogs = () => {
       { state.map((v,i) => {
         return(
           <div key={i}>
-            <Link to={`/blogsinfo/${v.id}`}>{v.title}</Link>
+            <Link to={`/bloginfo/${v.id}`}>{v.title}</Link>
             <p>{v.body}</p>
           </div>
         )

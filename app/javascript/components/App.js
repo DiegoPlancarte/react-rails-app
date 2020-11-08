@@ -25,7 +25,7 @@ class App extends React.Component {
         
         <Switch>
           <Route exact path ='/allblogs'> <GetBlogs /> </Route>
-          <Route path ='/bloginfo/:id' render={(props) => <BlogInfo {...props} current_user= { current_user }/> }/>
+          <Route path ='/blogsinfo/:id' render={(props) => <BlogInfo {...props} current_user= { current_user }/> }/>
           <Route path="/createblog" render={(props) => <CreateBlog {...props} current_user= { current_user }/> }/>
           <Route path="/editblog/:id" render={(props) => <EditBlog {...props} current_user= { current_user }/> }/>
         </Switch>
