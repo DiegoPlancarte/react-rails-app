@@ -40,9 +40,8 @@ const EditBlog = (props) => {
     })
     .then ((response)=> {
       if (response.ok){
-        return (
-          props.history.push('/allblogs')
-        )
+        alert('Your blog has been updated!')
+        props.history.push(`/bloginfo/${props.match.params.id}`)
       }
     })
   }

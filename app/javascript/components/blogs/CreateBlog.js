@@ -26,9 +26,9 @@ const CreateBlog = (props) => {
     }
   }
 
-  const createBlog = (form) => {
+  const createBlog = (data) => {
     fetch(`/blogs`, {
-      body: JSON.stringify(form),
+      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
@@ -39,6 +39,7 @@ const CreateBlog = (props) => {
       if (resp.ok) {
         setState({})
         alert('Your blog has been created!')
+        props.history.push(`/allblogs`)
       }
     })
     .catch((err) => {
