@@ -5,8 +5,8 @@ import updateData from '../utils/updateData'
 
 const EditBlog = (props) => {
   
-  const [ state, setState ] = readData("blogs", `${props.match.params.id}`)
-  const [ editData ] = updateData("blogs", props)
+  const [ state, setState ] = readData("blog", `${props.match.params.id}`)
+  const [ editData ] = updateData("blog", props)
 
   const handleSubmit = (event) => {
     if(event) {

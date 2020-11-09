@@ -5,7 +5,7 @@ const createData = ( url, props ) => {
   const [ state, setState ] = useState({})
   
   const newData = (data)=> {
-    fetch(`/${url}`, {
+    fetch(`/${url}s`, {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
@@ -16,8 +16,8 @@ const createData = ( url, props ) => {
     .then((resp) => {
       if (resp.ok) {
         setState({})
-        alert('Your blog has been created!')
-        props.history.push(`/allblogs`)
+        alert(`Your ${url} has been created!`)
+        props.history.push(`/all${url}s`)
       }
     })
     .catch((err) => {

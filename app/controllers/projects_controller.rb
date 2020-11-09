@@ -1,35 +1,35 @@
 class ProjectsController < ApplicationController
-  before_action :set_projects, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
-  # GET /projectss
-  # GET /projectss.json
+  # GET /projects
+  # GET /projects.json
   def index
-    @projectss = Projects.all
-    render json: @projectss
-  end
-
-  # GET /projectss/1
-  # GET /projectss/1.json
-  def show
+    @projects = Project.all
     render json: @projects
   end
 
-  # GET /projectss/new
-  def new
-    @projects = projects.new
+  # GET /projects/1
+  # GET /projects/1.json
+  def show
+    render json: @project
   end
 
-  # GET /projectss/1/edit
+  # GET /projects/new
+  def new
+    @project = projects.new
+  end
+
+  # GET /projects/1/edit
   def edit
   end
 
-  # POST /projectss
-  # POST /projectss.json
+  # POST /projects
+  # POST /projects.json
   def create
-    @projects = projects.new(projects_params)
+    @project = Project.new(projects_params)
 
     respond_to do |format|
-      if @projects.save
+      if @project.save
         format.json { render :show, status: :created, location: @projects }
       else
         format.html { render :new }
@@ -38,36 +38,36 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /projectss/1
-  # PATCH/PUT /projectss/1.json
+  # PATCH/PUT /projects/1
+  # PATCH/PUT /projects/1.json
   def update
-    @projects.update(projects_params)
-    if @projects.valid?
-      render json: @projects
+    @project.update(projects_params)
+    if @project.valid?
+      render json: @project
     end
   end
 
-  # DELETE /projectss/1
-  # DELETE /projectss/1.json
+  # DELETE /projects/1
+  # DELETE /projects/1.json
   def destroy
-    @projects.destroy
-      render json:Projects.all
+    @project.destroy
+      render json:Project.all
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_projects
-      @projects = projects.find(params[:id])
+    def set_project
+      @project = Project.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def projects_params
-      params.require(:projects).permit(:title, 
+      params.require(:project).permit(:title, 
                                         :description, 
-                                        :user_id, 
-                                        :id, 
-                                        :position, 
-                                        :created_at, 
-                                        :updated_at)
+                                        :user_id,
+                                        :position,
+                                        :id,
+                                        :created_at,
+                                        :updated_at,)
     end
 end
