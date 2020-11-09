@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 const createData = ( url, props ) => {
+
+  const [ state, setState ] = useState({})
   
   const newData = (data)=> {
     fetch(`/${url}`, {

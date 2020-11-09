@@ -1,7 +1,7 @@
-const updateData = ( url, id, props ) => {
+const updateData = ( url, props ) => {
   
   const editData = (data)=> {
-    return fetch (`/${url}/${id}`, {
+    return fetch (`/${url}/${props.match.params.id}`, {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const updateData = ( url, id, props ) => {
     })
     .then ((response)=> {
       if (response.ok){
-        props.history.push(`/${url}info/${id}`)
+        props.history.push(`/${url}info/${props.match.params.id}`)
       }
     })
   }
