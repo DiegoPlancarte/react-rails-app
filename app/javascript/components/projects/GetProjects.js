@@ -3,18 +3,18 @@ import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 import readDate from '../utils/readData'
 
-const GetBlogs = () => {
+const GetProjects = () => {
 
-  const [ state ] = readDate("blog", "")
+  const [ state ] = readDate("project", "")
 
   return (
     <React.Fragment>
-      <Link to='/createblog'><Button>Create Blog</Button></Link>
+      <Link to='/createproject'><Button>Create Blog</Button></Link>
       { state.map((v,i) => {
         return(
           <div key={i}>
-            <Link to={`/bloginfo/${v.id}`}>{v.title}</Link>
-            <p>{v.body}</p>
+            <Link to={`/projectinfo/${v.id}`}>{v.title}</Link>
+            <p>{v.description}</p>
           </div>
         )
       })}
@@ -22,4 +22,4 @@ const GetBlogs = () => {
   );
 };
 
-export default GetBlogs;
+export default GetProjects;

@@ -19,4 +19,15 @@ puts "3 users created"
   )
 end
 
+puts "10 projects created"
+
+10.times do |project|
+  Project.create!(
+    title: "My Project #{project}",
+    description: "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing.",
+    position: "#{project}",
+    user_id: rand(1..3)
+  )
+end
+
 puts "10 blog posts created"

@@ -3,9 +3,9 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import useForm from '../utils/useForm';
 import createData from '../utils/createData';
 
-const CreateBlog = (props) => {
+const CreateProject = (props) => {
 
-  const [ newData ] = createData('blog', props)
+  const [ newData ] = createData('project', props)
   const [ state, handleInputChange ] = useForm(props)
 
   const handleSubmit = (event) => {
@@ -30,14 +30,14 @@ const CreateBlog = (props) => {
                   onChange={ handleInputChange } 
                   placeholder="Enter title" />
               </Form.Group>
-              <Form.Group controlId="body">
-                <Form.Label>Body</Form.Label>
+              <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
                 <Form.Control 
                   type="textarea" 
-                  name="body" 
-                  value={ state.body || '' } 
+                  name="description" 
+                  value={ state.description || '' } 
                   onChange={ handleInputChange }  
-                  placeholder="Enter body" />
+                  placeholder="Enter description" />
               </Form.Group>
               <Button variant="primary" onClick={ handleSubmit } type="submit">
                 Submit
@@ -50,4 +50,4 @@ const CreateBlog = (props) => {
   )
 }
 
-export default CreateBlog;
+export default CreateProject;

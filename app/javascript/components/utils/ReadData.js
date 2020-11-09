@@ -6,7 +6,7 @@ const readData = ( url, id ) => {
   
   useEffect(() => {
     const fetchData = () => {
-      fetch(`/${url}/${id}`)
+      fetch(`/${url}s/${id}`)
     .then((response)=>{
       if(response.status === 200){
           return(response.json())

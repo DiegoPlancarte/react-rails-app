@@ -1,18 +1,23 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import useForm from '../utils/useForm';
-import createData from '../utils/createData';
+import readData from '../utils/readData'
+import updateData from '../utils/updateData'
 
-const CreateBlog = (props) => {
-
-  const [ newData ] = createData('blog', props)
-  const [ state, handleInputChange ] = useForm(props)
+const EditProject = (props) => {
+  
+  const [ state, setState ] = readData("project", `${props.match.params.id}`)
+  const [ editData ] = updateData("project", props)
 
   const handleSubmit = (event) => {
     if(event) {
       event.preventDefault();
     }
-    newData(state)
+    editData(state)
+  }
+  
+  const handleInputChange = (event) => {
+    event.persist();
+    setState(state => ({...state, [event.target.name]: event.target.value}));
   }
 
   return (
@@ -30,14 +35,14 @@ const CreateBlog = (props) => {
                   onChange={ handleInputChange } 
                   placeholder="Enter title" />
               </Form.Group>
-              <Form.Group controlId="body">
-                <Form.Label>Body</Form.Label>
+              <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
                 <Form.Control 
                   type="textarea" 
-                  name="body" 
-                  value={ state.body || '' } 
+                  name="description" 
+                  value={ state.description || '' } 
                   onChange={ handleInputChange }  
-                  placeholder="Enter body" />
+                  placeholder="Enter description" />
               </Form.Group>
               <Button variant="primary" onClick={ handleSubmit } type="submit">
                 Submit
@@ -50,4 +55,4 @@ const CreateBlog = (props) => {
   )
 }
 
-export default CreateBlog;
+export default EditProject;

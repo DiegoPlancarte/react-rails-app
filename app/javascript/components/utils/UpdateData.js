@@ -1,7 +1,7 @@
 const updateData = ( url, props ) => {
   
   const editData = (data)=> {
-    return fetch (`/${url}/${props.match.params.id}`, {
+    return fetch (`/${url}s/${props.match.params.id}`, {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
