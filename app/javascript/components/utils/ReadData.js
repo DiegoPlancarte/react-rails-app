@@ -7,17 +7,17 @@ const readData = ( url, id ) => {
   useEffect(() => {
     const fetchData = () => {
       fetch(`/${url}s/${id}`)
-    .then((response)=>{
-      if(response.status === 200){
-          return(response.json())
+        .then((response)=>{
+          if(response.status === 200){
+              return(response.json())
+            }
+          })
+          .then((data) => {
+            setState(data);
+          })
         }
-      })
-      .then((data) => {
-        setState(data);
-      })
-    }
-    fetchData()
-  }, []);
+        fetchData()
+      }, []);
 
   return [
     state,

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import TopBar from "./shared/Topbar"
 import GetBlogs from "./blogs/GetBlogs";
+import FavBlogs from "./blogs/FavBlogs";
 import BlogInfo from "./blogs/BlogInfo";
 import CreateBlog from "./blogs/CreateBlog";
 import EditBlog from "./blogs/EditBlogs";
@@ -30,6 +31,7 @@ class App extends React.Component {
         <Switch>
         {/* Blog Routes */}
           <Route exact path ='/allblogs'> <GetBlogs /> </Route>
+          <Route path ='/my_blogs' render={(props) => <FavBlogs {...props} current_user= { current_user }/> }/>
           <Route path ='/bloginfo/:id' render={(props) => <BlogInfo {...props} current_user= { current_user }/> }/>
           <Route path="/createblog" render={(props) => <CreateBlog {...props} current_user= { current_user }/> }/>
           <Route path="/editblog/:id" render={(props) => <EditBlog {...props} current_user= { current_user }/> }/>
