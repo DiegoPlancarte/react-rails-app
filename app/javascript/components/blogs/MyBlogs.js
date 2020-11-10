@@ -6,36 +6,18 @@ import readDate from '../utils/readDataNew'
 const FavBlogs = (props) => {
 
   const [ state, error ] = readDate("blog", "")
-  const [ favs, fav_error ] = readDate("favorite_blog", "")
 
-  if (favs === null || state === null ) {
+  if (!state) {
     return <div>Loading...</div>
   }
 
-  const my_info = favs.filter((v,i) => {
-    return(v.user_id === props.current_user.id)
-  })
-  console.log(my_info)
-
-  const my_favs = my_info[0].fav_blogs.split(', ').map(x=>+x).sort()
-  console.log(my_favs)
-
-  const fav_blogs = () => {
-    let list = []
-    state.map((v,i) => {
-      my_favs.map((n,index) => {
-        if (v.id === n) {
-          list.push(v)
-        }
-      })
-    })
-    return list
-  }
-
+  const my_blogs = state.filter((a,i)=>
+  {return(a.user_id === props.current_user.id)})
+  
   return (
     <React.Fragment>
       <Link to='/createblog'><Button>Create Blog</Button></Link>
-      {fav_blogs().map((v,i) => {
+      {my_blogs.map((v,i) => {
         return(
           <div key={i}>
             <Link to={`/bloginfo/${v.id}`}>{v.title}</Link>

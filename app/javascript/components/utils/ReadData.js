@@ -11,13 +11,13 @@ const readData = ( url, id ) => {
           if(response.status === 200){
               return(response.json())
             }
-          })
-          .then((data) => {
-            setState(data);
-          })
-        }
-        fetchData()
-      }, []);
+        })
+        .then((data) => {
+          setState(data);
+        })
+      }
+      fetchData()
+  }, []);
 
   return [
     state,
