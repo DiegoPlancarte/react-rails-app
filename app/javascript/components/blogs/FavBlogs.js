@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
-import readDate from '../utils/readDataNew'
+import readDataNew from '../utils/readDataNew'
 
 const FavBlogs = (props) => {
 
-  const [ state, error ] = readDate("blog", "")
-  const [ favs, fav_error ] = readDate("favorite_blog", "")
+  const [ state, error ] = readDataNew("blog", "")
+  const [ favs, fav_error ] = readDataNew("favorite_blog", "")
 
   if (favs === null || state === null ) {
     return <div>Loading...</div>
@@ -15,10 +15,8 @@ const FavBlogs = (props) => {
   const my_info = favs.filter((v,i) => {
     return(v.user_id === props.current_user.id)
   })
-  console.log(my_info)
 
   const my_favs = my_info[0].fav_blogs.split(', ').map(x=>+x).sort()
-  console.log(my_favs)
 
   const fav_blogs = () => {
     let list = []

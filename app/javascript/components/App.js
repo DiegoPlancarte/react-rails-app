@@ -1,6 +1,5 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import readDate from './utils/readData'
 
 import TopBar from "./shared/Topbar"
 import GetBlogs from "./blogs/GetBlogs";

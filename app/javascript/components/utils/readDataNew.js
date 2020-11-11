@@ -1,25 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const readData = ( url, id ) => {
+const readDataNew = ( url, id ) => {
   
   const [ state, setState ] = useState(null);
   const [ error, setError ] = useState(null);
-
-  // useEffect(async () => {
-  //   const fetchData = async () =>{
-  //     setIsLoading(true)
-  //     try{
-  //       const res = await fetch(`/${url}s/${id}`)
-  //       const json = await res.json()
-  //         setState(json);
-  //         setIsLoading(false)
-  //       } catch (error) {
-  //         setError(error)
-  //       }
-  //       fetchData()
-  //       console.log('readDate:',json)
-  // }
-  // }, [])
 
   useEffect(() => {
     const fetchData = () => {
@@ -43,8 +27,9 @@ const readData = ( url, id ) => {
 
   return [
     state,
+    setState,
     error
   ]
 };
 
-export default readData;
+export default readDataNew;
