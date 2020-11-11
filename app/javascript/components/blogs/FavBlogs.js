@@ -12,11 +12,10 @@ const FavBlogs = (props) => {
     return <div>Loading...</div>
   }
 
-  const my_info = favs.filter((v,i) => {
-    return(v.user_id === props.current_user.id)
-  })
+  console.log(props.current_user.id)
+  console.log(favs)
 
-  const my_favs = my_info[0].fav_blogs.split(', ').map(x=>+x).sort()
+  const my_favs = favs.fav_blogs.split(', ').map(x=>+x)
 
   const fav_blogs = () => {
     let list = []

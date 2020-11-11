@@ -1,11 +1,10 @@
 class FavoriteBlogsController < ApplicationController
-  before_action :set_favorite_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_favorite_blog, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /favorite_blogs
   # GET /favorite_blogs.json
   def index
-    @favorite_blogs = FavoriteBlog.all
-    render json: @favorite_blogs
+    render json: @favorite_blog
   end
 
   # GET /favorite_blogs/1
@@ -58,12 +57,12 @@ class FavoriteBlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite_blog
-      @favorite_blog = FavoriteBlog.find(params[:id])
+      @user = current_user.id
+      @favorite_blog = FavoriteBlog.find_by_user_id(@user)
     end
 
     # Only allow a list of trusted parameters through.
     def favorite_blog_params
-      params.require(:favorite_blog).permit(:fav_blogs, 
-                                            :user_id)
+      params.require(:favorite_blog).permit(:fav_blogs)
     end
 end
