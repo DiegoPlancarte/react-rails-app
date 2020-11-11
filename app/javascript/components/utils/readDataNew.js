@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-const readData = ( url, id ) => {
+const readDataNew = ( url, id ) => {
   
-  const [state, setState] = useState([]);
-  
+  const [ state, setState ] = useState(null);
+  const [ error, setError ] = useState(null);
+
   useEffect(() => {
     const fetchData = () => {
       fetch(`/${url}s/${id}`)
@@ -15,14 +16,20 @@ const readData = ( url, id ) => {
         .then((data) => {
           setState(data);
         })
-      }
-      fetchData()
+        .catch((err) => {
+          if(err) {
+            setError(err)
+          }
+        })
+    }
+    fetchData()
   }, []);
 
   return [
     state,
-    setState
+    setState,
+    error
   ]
 };
 
-export default readData;
+export default readDataNew;

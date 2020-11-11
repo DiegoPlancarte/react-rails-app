@@ -31,3 +31,20 @@ puts "10 projects created"
 end
 
 puts "10 blog posts created"
+
+FavoriteBlog.create!(
+  fav_blogs: '1, 2, 3',
+  user_id: 1
+)
+
+FavoriteBlog.create!(
+  fav_blogs: '1, 2, 3, 4, 5, 6, 7, 8, 9',
+  user_id: 2
+)
+
+FavoriteBlog.create!(
+  fav_blogs: '5, 6, 1',
+  user_id: 3
+)
+
+puts "3 favorite blog list created"
