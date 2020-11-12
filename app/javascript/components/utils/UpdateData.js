@@ -1,4 +1,4 @@
-const updateData = ( url, props ) => {
+const updateData = ( url, props, redirect ) => {
   
   const editData = (data)=> {
     return fetch (`/${url}s/${props.match.params.id}`, {
@@ -11,7 +11,7 @@ const updateData = ( url, props ) => {
     })
     .then ((response)=> {
       if (response.ok){
-        props.history.push(`/${url}info/${props.match.params.id}`)
+        props.history.push(`/${redirect}`)
       }
     })
   }
