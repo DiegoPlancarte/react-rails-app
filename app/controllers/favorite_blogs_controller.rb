@@ -63,6 +63,10 @@ class FavoriteBlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def favorite_blog_params
-      params.require(:favorite_blog).permit(:fav_blogs)
+      params.require(:favorite_blog).permit(:id,
+                                            :fav_blogs,
+                                            :user_id,
+                                            :created_at,
+                                            :updated_at)
     end
 end

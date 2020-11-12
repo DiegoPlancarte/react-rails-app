@@ -1,16 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 import readDataNew from '../utils/readDataNew'
-import updateData from '../utils/updateData'
 import destroyData from '../utils/destroyData'
 
 const BlogInfo = (props) => {
 
   const [ state, setState ] = readDataNew("blog", `${props.match.params.id}`)
   const [ favs, setFavs ] = readDataNew("favorite_blog", "")
-  const [ newFavs ] = updateData("favorite_blog", props)
   const [ deleteData ] = destroyData("blog", `${props.match.params.id}`, props)
+
+  const editData = (data)=> {
+    return fetch (`/favorite_blogs/${favs.id}`, {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
+      },
+      method: 'PUT'
+    })
+    .then ((response)=> {
+      if (response.ok){
+        // props.history.push('/fav_blogs')
+      }
+    })
+  }
 
   if (favs === null || state === null ) {
     return <div>Loading...</div>
@@ -20,40 +34,34 @@ const BlogInfo = (props) => {
     return props.current_user.id === state.user_id
   }
 
-  const my_info = favs.filter((v,i) => {
-    return(v.user_id === props.current_user.id)
-  })
-
-  const my_favs = my_info[0].fav_blogs.split(', ').map(x=>+x).sort()
-
-  console.log(favs)
-  console.log(state)
+  let my_favs = favs.fav_blogs.split(', ').map(x=>+x).sort()
+  console.log('before click:',favs)
   
-    const toggleFavorite = (event) => {
-      let newList = []
+    const toggleFavorite = () => {
+      let list = my_favs
       let index = my_favs.indexOf(state.id)
       if (index > -1) {
-        newList = my_favs.splice(index, 1)
-        setFavs(favs => ({...favs, fav_blogs: newList}))
+        list.splice(index, 1)
+        setFavs(favs => ({...favs, fav_blogs: list.join(', ')}))
       } else {
-        newList = my_favs.push(state.id)
-        setFavs(favs => ({...favs, fav_blogs: newList}))
+        list.push(state.id)
+        setFavs(favs => ({...favs, fav_blogs: list.join(', ')}))
       }
-      newFavs(favs)
+      console.log('after click:',favs)
+      editData(favs)
     }
 
   const fav_button = () => {
-    let exists = my_favs.indexOf(state.id)
     if (my_favs.includes(state.id)) {
-      return (<Button onClick={toggleFavorite} >Unfavorite</Button>)
+      return 'Unfavorite'
     } else {
-      return (<Button onClick={toggleFavorite} >Favorite</Button>)
+      return 'Favorite'
     }
   }
 
   return (
     <React.Fragment>
-      { fav_button() }
+      <Button onClick={toggleFavorite}>{ my_favs.includes(state.id)? 'Unfavorite' : 'Favorite' }</Button>
       <h1>{state.title}</h1>
       <p>{state.body}</p>
       <p>{state.user_id}</p>

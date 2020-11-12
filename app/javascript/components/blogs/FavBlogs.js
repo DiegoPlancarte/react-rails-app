@@ -12,9 +12,6 @@ const FavBlogs = (props) => {
     return <div>Loading...</div>
   }
 
-  console.log(props.current_user.id)
-  console.log(favs)
-
   const my_favs = favs.fav_blogs.split(', ').map(x=>+x)
 
   const fav_blogs = () => {
