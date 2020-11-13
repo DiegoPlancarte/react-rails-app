@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import TopBar from "./shared/Topbar"
 import GetBlogs from "./blogs/GetBlogs";
+import Test from "./blogs/Test";
 import MyBlogs from "./blogs/MyBlogs";
 import FavBlogs from "./blogs/FavBlogs";
 import BlogInfo from "./blogs/BlogInfo";
@@ -32,6 +33,7 @@ const App = (props) => {
       <Switch>
       {/* Blog Routes */}
         <Route exact path ='/allblogs'> <GetBlogs /> </Route>
+        <Route exact path ='/test'> <Test /> </Route>
         <Route path ='/my_blogs' render={(props) => <MyBlogs {...props} current_user= { current_user } /> }/>
         <Route path ='/fav_blogs' render={(props) => <FavBlogs {...props} current_user= { current_user } /> }/>
         <Route path ='/bloginfo/:id' render={(props) => <BlogInfo {...props} current_user= { current_user }/> }/>

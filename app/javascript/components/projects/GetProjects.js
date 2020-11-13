@@ -1,11 +1,15 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
-import readDate from '../utils/readData'
+import useRead from '../hooks/useRead'
 
 const GetProjects = () => {
 
-  const [ state ] = readDate("project", "")
+  const [ state ] = useRead("projects", "")
+
+  if (state === null) {
+    return <div>Loading...</div>
+  }
 
   return (
     <React.Fragment>
