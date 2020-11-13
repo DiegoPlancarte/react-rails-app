@@ -2,17 +2,19 @@ import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import useForm from '../utils/useForm';
 import createData from '../utils/createData';
+import useCreate from '../hooks/useCreate';
 
 const CreateProject = (props) => {
 
-  const [ newData ] = createData('project', props)
+  // const [ newData ] = createData('project', props)
+  const [ createData, isLoading, error ] = useCreate( 'projects', '', props, 'projects/')
   const [ state, handleInputChange ] = useForm(props)
 
   const handleSubmit = (event) => {
     if(event) {
       event.preventDefault();
     }
-    newData(state)
+    createData(state)
   }
 
   return (

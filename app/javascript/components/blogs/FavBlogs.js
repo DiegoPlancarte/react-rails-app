@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
-import readDataNew from '../utils/readDataNew'
+import useRead from '../hooks/useRead'
 
 const FavBlogs = (props) => {
 
-  const [ state, error ] = readDataNew("blog", "")
-  const [ favs, fav_error ] = readDataNew("favorite_blog", "")
+  const [ state, error ] = useRead("blog", "")
+  const [ favs, fav_error ] = useRead("favorite_blog", "")
 
   if (favs === null || state === null ) {
     return <div>Loading...</div>

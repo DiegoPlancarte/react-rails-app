@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 
-const readDataNew = ( url, id ) => {
+const useRead = ( url, id ) => {
   
   const [ state, setState ] = useState(null);
+  const [ isLoading, setIsLoading ] = useState(null);
   const [ error, setError ] = useState(null);
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(`/${url}s/${id}`)
+      setIsLoading(true)
+      fetch(`/${url}/${id}`)
         .then((response)=>{
           if(response.status === 200){
               return(response.json())
@@ -15,9 +17,11 @@ const readDataNew = ( url, id ) => {
         })
         .then((data) => {
           setState(data);
+          setIsLoading(false)
         })
         .catch((err) => {
           if(err) {
+            setIsLoading(true)
             setError(err)
           }
         })
@@ -28,8 +32,9 @@ const readDataNew = ( url, id ) => {
   return [
     state,
     setState,
+    isLoading,
     error
   ]
 };
 
-export default readDataNew;
+export default useRead;

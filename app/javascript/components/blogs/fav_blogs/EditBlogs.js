@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import readDataNew from '../utils/readDataNew'
+import readDataNew from '../hooks/readDataNew'
 import updateData from '../utils/updateData'
 
 const EditFavBlogs = (props) => {
