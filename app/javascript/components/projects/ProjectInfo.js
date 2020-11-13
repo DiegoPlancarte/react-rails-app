@@ -6,7 +6,7 @@ import useDelete from '../hooks/useDelete'
 
 const ProjectInfo = (props) => {
 
-  const [ state ] = useRead("project", `${props.match.params.id}`)
+  const [ state ] = useRead("projects", `${props.match.params.id}`)
   const [ deleteData, isLoading, error ] = useDelete("projects", `${props.match.params.id}`, props, 'allprojects')
 
   if (state === null) {

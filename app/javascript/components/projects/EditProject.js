@@ -1,12 +1,16 @@
 import React from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import readData from '../utils/readData'
-import updateData from '../utils/updateData'
+import useRead from '../hooks/useRead'
+import useUpdate from '../hooks/useUpdate'
 
 const EditProject = (props) => {
   
-  const [ state, setState ] = readData("project", `${props.match.params.id}`)
-  const [ editData ] = updateData("project", props)
+  const [ state, setState ] = useRead("projects", `${props.match.params.id}`)
+  const [ editData ] = useUpdate("projects", `${props.match.params.id}`, props, `projectinfo/${props.match.params.id}`)
+  
+  if (state === null) {
+    return <div>Loading...</div>
+  }
 
   const handleSubmit = (event) => {
     if(event) {
@@ -14,7 +18,7 @@ const EditProject = (props) => {
     }
     editData(state)
   }
-  
+
   const handleInputChange = (event) => {
     event.persist();
     setState(state => ({...state, [event.target.name]: event.target.value}));

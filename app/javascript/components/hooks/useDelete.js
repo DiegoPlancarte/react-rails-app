@@ -8,13 +8,12 @@ const useUpdate = ( url, id, props, redirectTo ) => {
 
   const deleteData = (data)=> {
     setIsLoading(true)
-    fetch(`/${url}/${id}`, {
-      body: JSON.stringify(data),
+    return fetch(`/${url}/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
       },
-      method: 'POST'
+      method: 'DELETE'
     })
     .then((response)=>{
       if(response.status === 200){

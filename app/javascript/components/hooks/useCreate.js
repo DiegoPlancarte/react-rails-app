@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useCreate = ( url, id, props, redirectTo ) => {
+const useCreate = ( url, props, redirectTo ) => {
 
   const [ state, setState ] = useState(null);
   const [ isLoading, setIsLoading ] = useState(null);
@@ -8,7 +8,7 @@ const useCreate = ( url, id, props, redirectTo ) => {
 
   const createData = (data)=> {
     setIsLoading(true)
-    fetch(`/${url}/${id}`, {
+    fetch(`/${url}`, {
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',

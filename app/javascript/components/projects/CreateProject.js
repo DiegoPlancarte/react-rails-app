@@ -6,8 +6,7 @@ import useCreate from '../hooks/useCreate';
 
 const CreateProject = (props) => {
 
-  // const [ newData ] = createData('project', props)
-  const [ createData, isLoading, error ] = useCreate( 'projects', '', props, 'projects/')
+  const [ createData, isLoading, error ] = useCreate( 'projects', props, 'allprojects')
   const [ state, handleInputChange ] = useForm(props)
 
   const handleSubmit = (event) => {

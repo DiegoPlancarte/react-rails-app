@@ -14,7 +14,7 @@ const useUpdate = ( url, id, props, redirectTo ) => {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': document.getElementsByName('csrf-token')[0].content
       },
-      method: 'POST'
+      method: 'PUT'
     })
     .then((response)=>{
       if(response.status === 200){
